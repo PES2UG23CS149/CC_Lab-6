@@ -24,12 +24,13 @@ pipeline {
             steps {
                 sh '''
                 docker rm -f backend1 backend2 || true
-
-                docker run -d --name backend1 --network lab-net backend-app
-                docker run -d --name backend2 --network lab-net backend-app
+        
+                docker run -d --name backend1 --network lab-net backend-app sleep infinity
+                docker run -d --name backend2 --network lab-net backend-app sleep infinity
                 '''
             }
         }
+
 
         stage('Deploy NGINX Load Balancer') {
             steps {
